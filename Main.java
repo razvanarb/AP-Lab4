@@ -10,13 +10,13 @@ public class Main
 
     public static void main(String[] args)
     {
-        //Create residents & sort them
+        //Am creat un stream de rezidenti si apoi i-am inserat intr-un array list sortati.
 
         Stream<Resident> residentsStream = IntStream.rangeClosed(0, 3)
                 .mapToObj(i -> new Resident("R" + i));
         ArrayList<Resident> residentsArrayList = residentsStream.sorted((Comparator.comparing(Resident::getName))).collect(Collectors.toCollection(ArrayList::new));
 
-        //Create hospitals
+        //Am creat un stream de spitale si apoi le-am inserat intr-un treeset
 
         Stream<Hospital> hospitalsStream = IntStream.rangeClosed(0, 2)
                 .mapToObj(i -> new Hospital("H" + i, 2));
@@ -25,9 +25,9 @@ public class Main
         hospitalsTreeSet.remove(H0);
         hospitalsTreeSet.add(H0);
 
-        //Resident preference HashMap
-
         ArrayList<Hospital> hospitalsArrayList = new ArrayList<Hospital>( hospitalsTreeSet);
+
+        // Introducerea preferintelor la rezidenti
 
         Resident resident_0 = residentsArrayList.get(0);
         Resident resident_1 = residentsArrayList.get(1);
@@ -52,6 +52,8 @@ public class Main
         resident_3.addPreference(hospital_0);
         resident_3.addPreference(hospital_2);
 
+        //Am introdus intr-un hashmap preferintele rezidentilor.
+
         Map<Resident, ArrayList<Hospital>> resPrefMap = new HashMap<>();
         for (Resident resid : residentsArrayList) {
             resPrefMap.put(resid, resid.getPreferences());
@@ -67,7 +69,7 @@ public class Main
 
         System.out.print("\n");
 
-        //Hospital preference LinkedHashMap
+        // Introducerea preferintelor la spitale
 
         hospital_0.addPreference(resident_3);
         hospital_0.addPreference(resident_0 );
@@ -81,6 +83,8 @@ public class Main
         hospital_2.addPreference(resident_0 );
         hospital_2.addPreference(resident_1);
         hospital_2.addPreference(resident_3);
+
+        // Introducerea preferintelor la spitale intr-un LinkedHashMap
 
         Map<Hospital, ArrayList<Resident>> hosPrefMap = new LinkedHashMap<>();
         for (Hospital hosp: hospitalsArrayList) {
@@ -96,7 +100,7 @@ public class Main
         });
         System.out.print("\n");
 
-        //Hospitals that have R0 as their top preference
+        //Afisarea spitalelor care prefera R0
 
         System.out.print(" Spitale care prefera R0: \n");
         hospitalsArrayList.stream().filter(hos -> {
@@ -108,7 +112,7 @@ public class Main
                 .forEach(hos -> System.out.println(hos.getName()));
         System.out.print("\n");
 
-        //Display the residents who find acceptable H0 and H2
+        //Displays the residents who find acceptable H0 and H2
 
         System.out.print(" Rezidenti care considera H0 si H2: \n");
         List<Hospital> target = Arrays.asList(hospital_0, hospital_2);

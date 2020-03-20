@@ -8,6 +8,11 @@ public class Hospital implements Comparable{
     private int capacity;
     private ArrayList<Resident> preferences;
 
+    /**
+     * This constructs a hospital with a specified name and capacity.
+     * @param name
+     * @param capacity
+     */
     public Hospital(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
@@ -23,6 +28,9 @@ public class Hospital implements Comparable{
     }
 
     public void addPreference(Resident r) {
+        /**
+         * Adauga intr-un arraylist preferinta R a spitalului.
+         */
         if (!preferences.contains(r))
             preferences.add(r);
     }

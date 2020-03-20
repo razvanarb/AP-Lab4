@@ -7,6 +7,11 @@ public class Resident
     private String name;
     private ArrayList<Hospital> preferences;
 
+    /**
+     * This constructs a resident with a specified name
+     * @param name
+     */
+
     public Resident(String name)
     {
         this.name = name;
@@ -19,6 +24,9 @@ public class Resident
     }
 
     public void addPreference(Hospital h) {
+        /**
+         * Adauga intr-un arraylist preferinta H a rezidentului.
+         */
         if (!preferences.contains(h))
             preferences.add(h);
     }
